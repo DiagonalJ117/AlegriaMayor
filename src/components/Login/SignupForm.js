@@ -3,6 +3,7 @@ import { Container, Header, Item, Input, Footer, Content, Form} from 'native-bas
 import { Alert, Pressable, Text, Button } from 'react-native';
 import firebase from '../../database/firebaseDB';
 import { useState } from 'react';
+import { Formik } from 'formik';
 
 
 const ShowAlert = (title, message) =>
@@ -18,18 +19,16 @@ const ShowAlert = (title, message) =>
 const SignupForm = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [userName, setUserName] = useState('');
+    const [cellphone, setCellphone] = useState('');
 
     const signupUser = () => {
         try {
-          if (email.length < 6){
-            ShowAlert('Error','Debe Ingresar el Correo');
-            return;
-          }
           if (password.length < 6){
-            ShowAlert('Error', 'Debe Ingresar la Contraseña');
+            ShowAlert('Error', 'La contraseña debe tener al menos 6 caracteres');
             return;
           }
-          firebase.auth().signInWithEmailAndPassword(email, password).then(function(user){
+          firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user){
             //console.log(user)
             ShowAlert('Success', JSON.stringify(user));
           });
@@ -45,10 +44,22 @@ const SignupForm = ({ navigation }) => {
         <Content padder>
         <Form>
             <Item>
+              <Input
+                placeholder="Nombre"
+                onChangeText={setUserName}
+              />
+            </Item>
+            <Item>
+              <Input
+                placeholder="Celular"
+                onChangeText={setCellphone}
+              />
+            </Item>
+            <Item>
               <Input placeholder="Correo Electronico" onChangeText={setEmail} />
             </Item>
             <Item last>
-              <Input placeholder="Contraseña" onChangeText={setPassword} />
+              <Input placeholder="Contraseña" onChangeText={setPassword} secureTextEntry/>
             </Item>
             <Button onPress={signupUser} title="Registrarse" />
           </Form>

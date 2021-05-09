@@ -32,8 +32,8 @@ const LoginForm = ({ navigation }) => {
           firebase.auth().signInWithEmailAndPassword(email, password).then(function(user){
             //console.log(user)
             ShowAlert('Success', JSON.stringify(user));
+            navigation.navigate('Home');
           });
-          navigation.navigate('Home');
         } catch (error) {
         //  console.log(error.toString());
          ShowAlert('Error', error.toString());
@@ -48,7 +48,7 @@ const LoginForm = ({ navigation }) => {
               <Input placeholder="Correo Electronico" onChangeText={setEmail} />
             </Item>
             <Item last>
-              <Input placeholder="Contraseña" onChangeText={setPassword} />
+              <Input placeholder="Contraseña" onChangeText={setPassword} secureTextEntry/>
             </Item>
             <Button onPress={loginUser} title="Iniciar Sesión" />
           </Form>

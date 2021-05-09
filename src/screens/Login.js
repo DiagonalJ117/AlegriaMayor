@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text } from 'react-native';
-import {Container, Tabs, Tab, Header, Content} from 'native-base';
+import {Container, Tabs, Tab, Header, Content, DefaultTabBar} from 'native-base';
 import LoginForm from '../components/Login/LoginForm';
 import SignupForm from '../components/Login/SignupForm';
 
@@ -11,6 +11,11 @@ const Login = ({route, navigation}) => {
     const [isSignup, setIsSignup] = useState(signup);
     const [formErrors, setFormErrors] = useState([]);
     const [ready, setReady] = useState(false);
+
+    const renderTabBar = (props) => {
+        props.tabStyle = Object.create(props.tabStyle);
+        return <DefaultTabBar {...props} />;
+      };
 
     //Realiza el cambio de la barra de titulo cuando se cambia de pestaña
     const handleTabChange = (tab) => {
@@ -29,7 +34,7 @@ const Login = ({route, navigation}) => {
     }, [isSignup]);
     return (
         <Container>
-            <Tabs initialPage={isSignup ? 0 : 1} onChangeTab={handleTabChange}>
+            <Tabs initialPage={isSignup ? 0 : 1} onChangeTab={handleTabChange} renderTabBar={renderTabBar}>
                 <Tab heading="Registro">
                     <SignupForm/>
                 </Tab>
