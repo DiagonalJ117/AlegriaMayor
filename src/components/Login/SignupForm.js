@@ -4,6 +4,7 @@ import { Alert, Pressable, Text, Button } from 'react-native';
 import firebase from '../../database/firebaseDB';
 import { useState } from 'react';
 import { Formik } from 'formik';
+import { useNavigation } from '@react-navigation/core';
 
 
 const ShowAlert = (title, message) =>
@@ -16,7 +17,8 @@ const ShowAlert = (title, message) =>
       );
 
 
-const SignupForm = ({ navigation }) => {
+const SignupForm = () => {
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userName, setUserName] = useState('');
