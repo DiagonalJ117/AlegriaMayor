@@ -3,6 +3,8 @@ import { Container, Header, Item, Input, Footer, Content, Form} from 'native-bas
 import { Alert, Pressable, Text, Button } from 'react-native';
 import firebase from '../../database/firebaseDB';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/core';
+
 
 
 const ShowAlert = (title, message) =>
@@ -15,9 +17,16 @@ const ShowAlert = (title, message) =>
       );
 
 
-const LoginForm = ({ navigation }) => {
+const LoginForm = (props) => {
+    const navigation = useNavigation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const temporaryTestValidation = () => {
+      if (email === 'test@test.com' && password === 'Test123!'){
+        navigation.navigate('Home');
+      }
+    };
 
     const loginUser = () => {
         try {
@@ -29,11 +38,14 @@ const LoginForm = ({ navigation }) => {
             ShowAlert('Error', 'Debe Ingresar la Contraseña');
             return;
           }
-          firebase.auth().signInWithEmailAndPassword(email, password).then(function(user){
-            //console.log(user)
-            ShowAlert('Success', JSON.stringify(user));
+          if (email === 'test@test.com' && password === 'Test123!'){
             navigation.navigate('Home');
-          });
+          }
+          // firebase.auth().signInWithEmailAndPassword(email, password).then(function(user){
+          //   //console.log(user)
+          //   ShowAlert('Success', JSON.stringify(user));
+          //   navigation.navigate('Home');
+          // });
         } catch (error) {
         //  console.log(error.toString());
          ShowAlert('Error', error.toString());
