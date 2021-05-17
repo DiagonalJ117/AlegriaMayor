@@ -153,12 +153,12 @@ const styles = StyleSheet.create({
 
     textobotondentro1: {
         fontSize: 19,
-        color: '#000000',
+        color: 'white',
     },
 
     textobotondentro: {
         fontSize: 19,
-        color: '#128021',
+        color: 'white',
     },
 
     button: {

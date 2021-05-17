@@ -1,28 +1,23 @@
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, StatusBar } from 'react-native';
 import React from 'react';
+import { Button } from 'react-native-elements';
 
 const LoginMenu = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.container1}>
-                <Text style={styles.paragraph}>ALEGRIA MAYOR</Text>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>Alegría Mayor</Text>
             </View>
-            <View style={styles.container2}>
-                <Image style={styles.cuadro, { width: 200, height: 200 }} resizeMode="contain" source={require('../assets/img/adultos.png')}/>
+            <View style={styles.contentContainer}>
+                <Image style={styles.mainImg} resizeMode="contain" source={require('../assets/img/adultos2.png')}/>
 
-                <Pressable style={styles.button1} onPress={() => navigation.navigate('Login',{signup: false})}>
-                    <Text style={styles.textobotondentro1}>INICIAR SESION</Text>
-                </Pressable>
+                <Button title="Iniciar Sesión" buttonStyle={styles.loginBtn} titleStyle={styles.loginBtnText} onPress={() => navigation.navigate('Login',{signup: false})} />
 
-                <Text style={styles.textobotonarriba}>
+                <Text style={styles.registerBtnHint}>
                     Es usted nuevo en la app?
                 </Text>
-                <Pressable style={styles.button} onPress={() => navigation.navigate('Login', { signup: true})}>
-                    <Text style={styles.textobotondentro}>CREAR CUENTA</Text>
-                </Pressable>
+                <Button title="Registrarse" buttonStyle={styles.registerBtn} titleStyle={styles.registerBtnText} onPress={() => navigation.navigate('Login', { signup: true})} />
             </View>
-            <View style={styles.container3} />
-
         </View>
     );
 };
@@ -30,76 +25,69 @@ const LoginMenu = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        paddingTop: '25%',
         justifyContent: 'center',
+        backgroundColor: '#67DAFF',
     },
 
-    container1: {
-        flex: 1,
+    titleContainer: {
         justifyContent: 'center',
         flexDirection: 'row',
-        backgroundColor: '#18CFD8',
         alignItems: 'center',
     },
 
-    container2: {
-        flexDirection: 'column',
-        flex: 7,
-        backgroundColor: '#A0F3F7',
-        alignItems: 'center',
-    },
-
-    container3: {
+    contentContainer: {
         flex: 1,
-        backgroundColor: '#18CFD8',
+        flexDirection: 'column',
         alignItems: 'center',
     },
 
-    paragraph: {
-        margin: 24,
-        fontSize: 25,
-        color: 'white',
+    title: {
+        fontSize: 40,
+        fontWeight: '100',
+        color: 'black',
     },
 
-    textobotonarriba: {
+    registerBtnHint: {
         padding: 8,
         fontSize: 19,
         color: 'black',
     },
 
-    textobotondentro1: {
-        fontSize: 19,
-        color: '#000000',
+    loginBtnText: {
+        fontSize: 24,
+        color: 'white',
     },
 
-    textobotondentro: {
-        fontSize: 19,
-        color: '#128021',
+    registerBtnText: {
+        fontSize: 24,
+        color: 'white',
     },
 
-    button: {
+    registerBtn: {
         alignItems: 'center',
-        backgroundColor: '#32DF4A',
-        padding: 10,
+        backgroundColor: '#007AC2',
+        padding: 5,
         borderRadius: 5,
         paddingVertical: 20,
         paddingHorizontal: 40,
     },
 
-    button1: {
+    loginBtn: {
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#39C9CB',
-        marginVertical: 30,
+        backgroundColor: '#03A9F5',
         padding: 1,
         borderRadius: 5,
         paddingVertical: 20,
         paddingHorizontal: 40,
     },
 
-    cuadro: {
+    mainImg: {
+        width: 200,
+        height: 200,
         justifyContent: 'flex-start',
         alignItems: 'center',
-
     },
 });
 

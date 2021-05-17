@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import {Container, Tabs, Tab, Header, Content, DefaultTabBar} from 'native-base';
 import LoginForm from '../components/Login/LoginForm';
 import SignupForm from '../components/Login/SignupForm';
@@ -34,7 +34,7 @@ const Login = ({route, navigation}) => {
     }, [isSignup]);
     return (
         <Container>
-            <Tabs initialPage={isSignup ? 0 : 1} onChangeTab={handleTabChange} renderTabBar={renderTabBar}>
+            <Tabs initialPage={isSignup ? 0 : 1} onChangeTab={handleTabChange} renderTabBar={renderTabBar} style={styles.tabBar}>
                 <Tab heading="Registro">
                     <SignupForm/>
                 </Tab>
@@ -45,5 +45,11 @@ const Login = ({route, navigation}) => {
         </Container>
     );
 };
+
+const styles = StyleSheet.create({
+    tabBar: {
+        backgroundColor: '#03A9F5'
+    }
+});
 
 export default Login;
