@@ -1,35 +1,20 @@
 import React, { useState } from 'react';
 import {Text, View, StyleSheet, TextInput, Button, TouchableOpacity, Image} from 'react-native';
+import ActivityList from '../components/Shared/ActivityList';
 
 const Home = ({ navigation }) => {
     return (
         <View style={styles.container}>
-
-            <View style={styles.container1}>
-                <Text style={styles.paragraph}>MENU</Text>
-                <TouchableOpacity style={styles.menuBtn} onPress={() => navigation.navigate('Actividad')}>
-                    <Text style={styles.textobotondentro1}>Actividad</Text>
-                </TouchableOpacity>
-                <Text style={styles.space} />
-                <TouchableOpacity style={styles.menuBtn} onPress={() => navigation.navigate('Opciones')}>
-                    <Text style={styles.textobotondentro1}>Opciones</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.container2}>
-                <Text style={styles.mitexto}>
+            <View style={styles.activityContainer}>
+                <Text style={styles.listTitle}>
                     NOVEDADES
-            </Text>
-                <Text style={styles.mitexto2}>
-                    Estas al día
                 </Text>
-
-
+                <ActivityList/>
             </View>
 
-            <View style={styles.container_bar} />
+            <View style={styles.divider} />
 
-            <View style={styles.container2sub1}>
+            <View style={styles.menuSection}>
                 <View style={{ position: 'absolute' }}>
                     <TouchableOpacity style={{
                         alignItems: 'center',
@@ -106,8 +91,6 @@ const Home = ({ navigation }) => {
                 </Text>
             </View>
 
-            <View style={styles.container3} />
-
         </View>
     );
 };
@@ -116,14 +99,30 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: '#03A9F5',
     },
 
-    container1: {
-        flex: 1,
+    divider: {
+        height: 1,
+        backgroundColor: 'black',
+        marginHorizontal: 5,
+        borderRadius: 3,
+    },
+
+    activityContainer: {
         justifyContent: 'center',
-        flexDirection: 'row',
-        backgroundColor: '#18CFD8',
+        flexDirection: 'column',
         alignItems: 'center',
+        height: '50%',
+        marginBottom: 20,
+    },
+    listTitle: {
+        fontSize: 20,
+        color: 'white',
+    },
+    menuSection: {
+        marginVertical: 30,
+        marginBottom: '5%',
     },
 
     container2: {
@@ -131,18 +130,6 @@ const styles = StyleSheet.create({
         flex: 7,
         backgroundColor: '#A0F3F7',
         alignItems: 'center',
-    },
-
-    container3: {
-        flex: 1,
-        backgroundColor: '#18CFD8',
-        alignItems: 'center',
-    },
-
-    paragraph: {
-        margin: 24,
-        fontSize: 25,
-        color: 'white',
     },
 
     textobotonarriba: {
@@ -184,7 +171,6 @@ const styles = StyleSheet.create({
     cuadro: {
         justifyContent: 'flex-start',
         alignItems: 'center',
-
     },
 });
 

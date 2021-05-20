@@ -12,13 +12,12 @@ const Login = ({route, navigation}) => {
     const [isSignup, setIsSignup] = useState(signup);
     const [activeTab, setActiveTab] = useState(0);
     const [formErrors, setFormErrors] = useState([]);
-    const [ready, setReady] = useState(false);
-
-    const renderTabBar = (props) => {
-        props.tabStyle = Object.create(props.tabStyle);
-        return <DefaultTabBar {...props} />;
-      };
-
+    //Coloca el valor inicial de la barra de titulo cuando se carga el componente.
+    useEffect(() => {
+        isSignup ? navigation.setOptions({ title: 'Registro'}) : navigation.setOptions({ title: 'Iniciar Sesión'});
+        setActiveTab(isSignup ? 0 : 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isSignup]);
     //Realiza el cambio de la barra de titulo cuando se cambia de pestaña
     const handleTabChange = (tab) => {
         setActiveTab(tab);
@@ -30,12 +29,7 @@ const Login = ({route, navigation}) => {
             navigation.setOptions({ title: 'Iniciar Sesión'});
         }
     };
-    //Coloca el valor inicial de la barra de titulo cuando se carga el componente.
-    useEffect(() => {
-        isSignup ? navigation.setOptions({ title: 'Registro'}) : navigation.setOptions({ title: 'Iniciar Sesión'});
-        setActiveTab(isSignup ? 0 : 1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isSignup]);
+
     return (
         <Container>
             <Tab onChange={handleTabChange} value={activeTab} style={styles.tabBar} indicatorStyle={styles.tabIndicator}>

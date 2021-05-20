@@ -24,7 +24,7 @@ const LoginForm = (props) => {
 
     const temporaryTestValidation = () => {
       if (email === 'test@test.com' && password === 'Test123!'){
-        navigation.navigate('Home');
+        navigation.navigate('LoggedIn');
       }
     };
 
@@ -38,9 +38,11 @@ const LoginForm = (props) => {
             ShowAlert('Error', 'Debe Ingresar la Contraseña');
             return;
           }
-          if (email === 'test@test.com' && password === 'Test123!'){
-            navigation.navigate('Home');
-          }
+          // if (email === 'test@test.com' && password === 'Test123!'){
+          //   navigation.navigate('LoggedIn');
+          // }
+
+          navigation.navigate('LoggedIn');
           // firebase.auth().signInWithEmailAndPassword(email, password).then(function(user){
           //   //console.log(user)
           //   ShowAlert('Success', JSON.stringify(user));
