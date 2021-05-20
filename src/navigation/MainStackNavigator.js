@@ -5,6 +5,7 @@ import Login from '../screens/Login';
 import LoginMenu from '../screens/LoginMenu';
 import ActivityLog from '../screens/ActivityLog';
 import { StyleSheet } from 'react-native';
+import LoggedIn from '../screens/LoggedIn';
 
 const Stack = createStackNavigator();
 
@@ -12,9 +13,8 @@ const MainStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login Menu" component={LoginMenu} options={{ headerShown: false }} />
-      <Stack.Screen name="Home" component={Home} options={{ headerStyle: styles.normalHeader}}/>
       <Stack.Screen name="Login" component={Login} options={({ route }) => ({ title: route.params.name , headerStyle: styles.normalHeader, headerTintColor: 'white'})} />
-      <Stack.Screen name="Actividad" component={ActivityLog} options={{headerStyle: styles.normalHeader, headerTintColor: 'white'}}/>
+      <Stack.Screen name="LoggedIn" component={LoggedIn} options={({ route }) => ({ headerShown: false})} />
     </Stack.Navigator>
   );
 };
