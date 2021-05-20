@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Header, Item, Input, Footer, Content, Form} from 'native-base';
-import { Alert, Pressable, Text, Button } from 'react-native';
+import { Alert, Pressable, Text, Button, TextInput, View, StyleSheet } from 'react-native';
 import firebase from '../../database/firebaseDB';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/core';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Input } from 'react-native-elements';
 
 
 
@@ -55,21 +56,27 @@ const LoginForm = (props) => {
         }
        };
     return (
-        <Container>
-        <Content padder>
-        <Form>
-            <Item>
-              <Input placeholder="Correo Electronico" onChangeText={setEmail} />
-            </Item>
-            <Item last>
-              <Input placeholder="Contraseña" onChangeText={setPassword} secureTextEntry/>
-            </Item>
-            <Button onPress={loginUser} title="Iniciar Sesión" />
-          </Form>
-        </Content>
-        <Footer />
-      </Container>
+      <View style={styles.formContainer}>
+        <View style={styles.inputGroupContainer}>
+          <Input placeholder="Correo Electronico" onChangeText={setEmail} autoCompleteType="email" />
+          <Input placeholder="Contraseña" onChangeText={setPassword} secureTextEntry/>
+        </View>
+
+        <Button onPress={loginUser} title="Iniciar Sesión" />
+      </View>
+
     );
 };
+
+const styles = StyleSheet.create({
+  formContainer: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: 'white'
+  },
+  inputGroupContainer: {
+    flexDirection: 'column',
+  },
+});
 
 export default LoginForm;

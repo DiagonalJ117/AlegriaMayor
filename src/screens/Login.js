@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import {Container, Tabs, Header, Content, DefaultTabBar} from 'native-base';
 import { Tab } from 'react-native-elements';
 import LoginForm from '../components/Login/LoginForm';
 import SignupForm from '../components/Login/SignupForm';
@@ -31,17 +30,21 @@ const Login = ({route, navigation}) => {
     };
 
     return (
-        <Container>
+        <View style={styles.container}>
             <Tab onChange={handleTabChange} value={activeTab} style={styles.tabBar} indicatorStyle={styles.tabIndicator}>
                 <Tab.Item title="Registro" buttonStyle={styles.tab} containerStyle={styles.tabBar} titleStyle={styles.tabText} />
                 <Tab.Item title="Iniciar Sesión" buttonStyle={styles.tab} containerStyle={styles.tabBar} titleStyle={styles.tabText} />
             </Tab>
             {activeTab === 0 ? <SignupForm /> : <LoginForm />}
-        </Container>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column'
+    },  
     tabBar: {
         backgroundColor: '#03A9F5',
     },
