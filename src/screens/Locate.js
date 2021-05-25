@@ -16,6 +16,7 @@ const Locate = () => {
     const LATITUDE_DELTA = 0.0922;
     const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+    //Por ahorita, esto localiza al telefono actual
     const handleOnLocate = () => {
         Geolocation.getCurrentPosition(
             position => {
