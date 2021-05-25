@@ -1,6 +1,6 @@
 import { StyleSheet, View, Alert, Dimensions } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Button } from 'react-native-elements';
 import Geolocation from '@react-native-community/geolocation';
 
@@ -28,10 +28,12 @@ const Locate = () => {
           );
         console.log('locate');
     };
-    //set current position
+    //set current position / colocar la posicion inicial cuando carga el componente
     useEffect(() => {
-
-    });
+      if(!currentPosition.latitude && !currentPosition.longitude){
+        handleOnLocate();
+      }
+    }, [currentPosition]);
     return (
         <View style={styles.container}>
         <View style={styles.mapContainer}>
@@ -45,12 +47,14 @@ const Locate = () => {
                 longitudeDelta: 0.0421,
               }}
             region={{
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: currentPosition.latitude ? currentPosition.latitude : 37.78825,
+                longitude: currentPosition.longitude ? currentPosition.longitude : -122.4324,
                 latitudeDelta: 0.015,
                 longitudeDelta: 0.0121,
             }}
-            />
+            >
+              {(currentPosition.latitude && currentPosition.longitude) && (<Marker coordinate={{ latitude: currentPosition.latitude , longitude: currentPosition.longitude}} />)}
+            </MapView>
         </View>
             <View style={styles.btnContainer}>
                 <Button title="Localizar" onPress={handleOnLocate} />
